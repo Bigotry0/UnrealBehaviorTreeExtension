@@ -29,6 +29,13 @@ class BEHAVIORTREEEXTENSION_API UBTStateMachineSelector : public UBTCompositeNod
 	int32 FindChildIndexFromStateId(int32 StateId) const;
 	int32 ShouldTransition(FBehaviorTreeSearchData& SearchData, int32 ChildIndex) const;
 
+#if ENGINE_MAJOR_VERSION==5&&ENGINE_MINOR_VERSION>=4
+	virtual void InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+		EBTMemoryInit::Type InitType) const override;
+	virtual void CleanupMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+		EBTMemoryClear::Type CleanupType) const override;
+#endif
+
 #if WITH_EDITOR
 	virtual FName GetNodeIconName() const override;
 #endif

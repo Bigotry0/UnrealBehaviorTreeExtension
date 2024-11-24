@@ -61,6 +61,13 @@ public:
 	virtual int32 GetNextChildHandler(struct FBehaviorTreeSearchData& SearchData, int32 PrevChild, EBTNodeResult::Type LastResult) const override;
 	virtual uint16 GetInstanceMemorySize() const override;
 
+#if ENGINE_MAJOR_VERSION==5&&ENGINE_MINOR_VERSION>=4
+	virtual void InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+		EBTMemoryInit::Type InitType) const override;
+	virtual void CleanupMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+		EBTMemoryClear::Type CleanupType) const override;
+#endif
+
 #if WITH_EDITOR
 	virtual FName GetNodeIconName() const override;
 #endif

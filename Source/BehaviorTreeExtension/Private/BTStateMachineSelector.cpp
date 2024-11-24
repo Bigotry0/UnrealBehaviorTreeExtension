@@ -88,6 +88,19 @@ int32 UBTStateMachineSelector::ShouldTransition(FBehaviorTreeSearchData& SearchD
 	// if no transitions have activated; just continue executing node
 	return ChildIndex;
 }
+
+#if ENGINE_MAJOR_VERSION==5&&ENGINE_MINOR_VERSION>=4
+void UBTStateMachineSelector::InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryInit::Type InitType) const
+{
+}
+
+void UBTStateMachineSelector::CleanupMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryClear::Type CleanupType) const
+{
+}
+#endif
+
 #if WITH_EDITOR
 FName UBTStateMachineSelector::GetNodeIconName() const
 {

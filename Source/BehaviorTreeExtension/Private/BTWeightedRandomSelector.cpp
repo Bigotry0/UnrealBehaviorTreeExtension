@@ -67,6 +67,18 @@ int32 UBTWeightedRandomSelector::GetNextChildHandler(FBehaviorTreeSearchData& Se
 	return NextChildIdx;
 }
 
+#if ENGINE_MAJOR_VERSION==5&&ENGINE_MINOR_VERSION>=4
+void UBTWeightedRandomSelector::InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryInit::Type InitType) const
+{
+}
+
+void UBTWeightedRandomSelector::CleanupMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryClear::Type CleanupType) const
+{
+}
+#endif
+
 #if WITH_EDITOR
 
 FName UBTWeightedRandomSelector::GetNodeIconName() const

@@ -191,6 +191,20 @@ uint16 UBTUtilitySelector::GetInstanceMemorySize() const
 	return sizeof(FBTUtilitySelectorMemory);
 }
 
+#if ENGINE_MAJOR_VERSION==5&&ENGINE_MINOR_VERSION>=4
+void UBTUtilitySelector::InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryInit::Type InitType) const
+{
+	InitializeNodeMemory<FBTUtilitySelectorMemory>(NodeMemory, InitType);
+}
+
+void UBTUtilitySelector::CleanupMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
+	EBTMemoryClear::Type CleanupType) const
+{
+	CleanupNodeMemory<FBTUtilitySelectorMemory>(NodeMemory, CleanupType);
+}
+#endif
+
 #if WITH_EDITOR
 FName UBTUtilitySelector::GetNodeIconName() const
 {
